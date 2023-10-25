@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>삼방고</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    #guessField {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    p {
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+    <h2>1에서 100 사이의 숫자를 맞춰보세요!</h2>
+    <input type="text" id="guessField">
+    <button onclick="checkGuess()">제출</button>
+    <p id="message"></p>
+
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let guessField = document.getElementById('guessField');
+        let message = document.getElementById('message');
+
+        function checkGuess() {
+            let userGuess = Number(guessField.value);
+            if (userGuess === randomNumber) {
+                message.textContent = '축하합니다! 숫자를 맞췄습니다!';
+            } else if (userGuess > randomNumber) {
+                message.textContent = '너무 큽니다! 다시 시도해보세요.';
+            } else if (userGuess < randomNumber) {
+                message.textContent = '너무 작습니다! 다시 시도해보세요.';
+            }
+            guessField.value = '';
+        }
+    </script>
+</body>
+</html>
